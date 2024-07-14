@@ -56,15 +56,12 @@ def write_all_links_cards(all_links_cards):
     with open('all_links_cards.txt', 'w', encoding='utf-8') as file:
         for link in all_links_cards:
             print(link, file=file)
-    return
-
 
 def multiprocessing_page(links):
     with multiprocessing.Pool(processes=8) as p:
         result = p.map(check_links_categories, links)
     all_links_cards = [num for sublist in result for num in sublist]
     write_all_links_cards(all_links_cards)
-    return
 
 
 def multiprocessing_cards(links):
@@ -124,7 +121,6 @@ def check_pagination(browser, all_links_flow):
                     time.sleep(1)
         except:
             break
-    return
 
 
 def check_all_cards(links):
@@ -153,7 +149,6 @@ def check_all_cards(links):
 
     if browser:
         browser.quit()
-    return
 
 
 def search_items_details(items_details_wait):
@@ -321,7 +316,6 @@ def check_card(browser, link, all_final_data):
                                        'Vendor': final_items_details[1]})
         except:
             pass
-    return
 
 
 def check_gender(browser, size_button, name, links_images, link, categories, items_ditals, category_id, all_final_data):
@@ -356,13 +350,12 @@ def check_gender(browser, size_button, name, links_images, link, categories, ite
                            'CategoryId': int(category_id),
                            'Brand': items_ditals[0],
                            'Vendor': items_ditals[1]})
-    return
 
 
 def write_final_file(filename, all_final_data):
     with open(filename, 'w', encoding='utf-8') as file:
         json.dump(all_final_data, file, indent=4, ensure_ascii=False)
-    return
+
 
 
 if __name__ == '__main__':
